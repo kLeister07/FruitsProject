@@ -7,8 +7,15 @@ async function main() {
     await mongoose.connect('mongodb://localhost:27017/fruitsDB');
     // Create schema reference and define it
     const fruitSchema = new mongoose.Schema({
-        name: String,
-        rating: Number,
+        name: {
+            type: String,
+            required: [true, "Please check your data entry, no name specified!"]
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 10
+        },
         review: String
     });
     // Compile schema into  model
@@ -32,7 +39,7 @@ async function main() {
         name: "John",
         age: 37
     });
-    await person.save();
+    // await person.save();
 
 // Saved for reference
     // // New fruit documents in bulk
@@ -61,7 +68,32 @@ async function main() {
     // // Save all fruit documents created
     // await fruit.save();
     
-    
+
+// Saved for reference
+    // // Update a document
+    // Fruit.updateOne({_id: "62dde9a8cde8c72e8a024d8b"}, {name: "Peach"}, function(err){
+    // if(err){
+    //     console.log(err);
+    // } else {
+    //     console.log("Succesfully updated the document!")
+    // }
+    // });
+
+// // Delete a document, can also use .deleteMany()
+//     Fruit.deleteOne({name: "Peach"}, function(err){
+//         if(err){
+//             console.log(err);
+//         } else {
+//             console.log("Succesfully deleted the document!")
+//         }
+//     });
+    // Person.deleteMany({name: "John"}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         console.log("Succesfully deleted all the documents!")
+    //     }
+    // });
     
     // Find documents
     const fruits = await Fruit.find(function(err, fruits){
@@ -73,11 +105,12 @@ async function main() {
             });
         }
     }).clone();
+
+
     // Close connection
     mongoose.connection.close();
     // End async function
 };
-
 
 
 
