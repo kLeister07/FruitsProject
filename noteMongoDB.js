@@ -1,3 +1,6 @@
+// Angela code for using mongodb without mongoose 
+// to connect app to database
+
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 

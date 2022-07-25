@@ -33,31 +33,36 @@ async function main() {
         age: 37
     });
     await person.save();
-    // New fruit documents in bulk
-    const kiwi = new Fruit({
-        name: "Kiwi",
-        rating: 10,
-        review: "The best fruit!"
-    });
-    const orange = new Fruit({
-        name: "Orange",
-        rating: 4,
-        review: "Too sour for me"
-    });
-    const banana = new Fruit({
-        name: "Banana",
-        rating: 3,
-        review: "Weird texture"
-    });
-    Fruit.insertMany([kiwi, orange, banana], function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("Successfully saved all the fruits to fruitsDB");
-        }
-    });
-    // Save all fruit documents created
-    await fruit.save();
+
+// Saved for reference
+    // // New fruit documents in bulk
+    // const kiwi = new Fruit({
+    //     name: "Kiwi",
+    //     rating: 10,
+    //     review: "The best fruit!"
+    // });
+    // const orange = new Fruit({
+    //     name: "Orange",
+    //     rating: 4,
+    //     review: "Too sour for me"
+    // });
+    // const banana = new Fruit({
+    //     name: "Banana",
+    //     rating: 3,
+    //     review: "Weird texture"
+    // });
+    // Fruit.insertMany([kiwi, orange, banana], function (err) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log("Successfully saved all the fruits to fruitsDB");
+    //     }
+    // });
+    // // Save all fruit documents created
+    // await fruit.save();
+    
+    
+    
     // Find documents
     const fruits = await Fruit.find(function(err, fruits){
         if(err){
