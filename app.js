@@ -1,6 +1,6 @@
 // Install mongoose
 const mongoose = require('mongoose');
-// Run main finction and catch error
+// Run main function and catch error
 main().catch(err => console.log(err));
 // async function
 async function main() {
@@ -32,14 +32,30 @@ async function main() {
     // New Schema, model, and document
     const personSchema = new mongoose.Schema({
         name: String,
-        age: Number
+        age: Number,
+        favoriteFruit: fruitSchema
     });
     const Person = mongoose.model("Person", personSchema);
-    const person = new Person({
-        name: "John",
-        age: 37
-    });
+const mango = new Fruit({
+name: "Mango",
+rating: 6,
+review: "Decent fruit."
+});
+await mango.save();
+Person.updateOne({name:"John"}, {favoriteFruit: mango}, function(err){
+    if(err){
+        console.log(err);
+    } else {
+        console.log("Succesfully updated the document.")
+    }
+})
+    // const person = new Person({
+    //     name: "Amy",
+    //     age: 12,
+    //     favoriteFruit: pineapple
+    // });
     // await person.save();
+
 
 // Saved for reference
     // // New fruit documents in bulk
